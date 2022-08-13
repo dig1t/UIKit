@@ -1,0 +1,14 @@
+{
+  "name": "UIKit Development Place",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+
+      "UIKit": {
+        "$path": "src"
+      }
+	  }
+  }
+}

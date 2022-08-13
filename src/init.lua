@@ -2,8 +2,7 @@
 local UserInput = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 
-local Util = require(script.Parent.Util)
-local Environment = require(script.Environment)
+local Util = require(script.Parent.dLib.Util)
 local Component = require(script.Component)
 local Fragment = require(script.Fragment)
 local Element = require(script.Element)
@@ -20,7 +19,6 @@ UK.type = {
 	surface = 'SurfaceGui'
 }
 
-UK.Environment = Environment
 UK.Component = Component
 UK.Fragment = Fragment
 UK.Element = Element
