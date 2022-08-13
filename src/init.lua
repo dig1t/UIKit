@@ -2,7 +2,7 @@
 local UserInput = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 
-local Util = require(script.Parent.dLib.Util)
+local Util = require(script.dLib.Util)
 local Component = require(script.Component)
 local Fragment = require(script.Fragment)
 local Element = require(script.Element)
