@@ -1,11 +1,6 @@
 {
-  "name": "UIKit",
+  "name": "uikit",
   "tree": {
-    "$className": "DataModel",
-    "ReplicatedStorage": {
-      "$className": "ReplicatedStorage",
-      "$ignoreUnknownInstances": true,
-      "$path": "src/ReplicatedStorage"
-    }
+    "$path": "src"
   }
 }

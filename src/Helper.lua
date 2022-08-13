@@ -1,6 +1,6 @@
 -- src/UIKit/Modules/Helper.lua
 
-local Util = require(script.Parent.Parent.Util)
+local Util = require(script.Parent.dLib.Util)
 local Const = require(script.Parent.Constants)
 
 local Helper = {}
