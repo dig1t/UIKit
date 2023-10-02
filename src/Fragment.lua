@@ -1,5 +1,3 @@
--- src/UIKit/Modules/Fragment.lua
-
 local Fragment, methods = {}, {}
 methods.__index = methods
 

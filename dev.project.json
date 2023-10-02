@@ -1,13 +1,17 @@
 {
-  "name": "UIKit Development Place",
+  "name": "UIKit dev",
   "tree": {
     "$className": "DataModel",
 
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
 
-      "UIKit": {
-        "$path": "src"
+      "Packages": {
+        "$className": "Folder",
+
+        "UIKit": {
+          "$path": "src"
+        }
       }
 	  }
   }

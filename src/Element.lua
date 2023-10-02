@@ -1,5 +1,3 @@
--- src/UIKit/Modules/Element.lua
-
 local Util = require(script.Parent.dLib.Util)
 local Fragment = require(script.Parent.Fragment)
 local Const = require(script.Parent.Constants)

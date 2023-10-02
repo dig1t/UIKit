@@ -1,5 +1,3 @@
--- src/UIKit/Modules/Constants.lua
-
 return {
 	isUIObject = {
 		Frame = true;

@@ -1,0 +1,17 @@
+.env
+env.luau
+
+# dependency directories
+Packages
+ServerPackages
+node_modules
+
+# build files
+placeAssets
+
+# Project place file
+*.rbxlx
+*.rbxl
+
+# temporary files
+*.lock

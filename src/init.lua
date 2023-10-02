@@ -1,4 +1,3 @@
--- src/UIKit.lua
 local UserInput = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 
@@ -7,6 +6,7 @@ local Component = require(script.Component)
 local Fragment = require(script.Fragment)
 local Element = require(script.Element)
 local Helper = require(script.Helper)
+local PropTypes = require(script.PropTypes)
 
 local UK, methods = {}, {}
 methods.__index = methods
@@ -19,6 +19,7 @@ UK.type = {
 	surface = 'SurfaceGui'
 }
 
+UK.PropTypes = PropTypes
 UK.Component = Component
 UK.Fragment = Fragment
 UK.Element = Element

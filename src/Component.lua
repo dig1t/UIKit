@@ -1,5 +1,3 @@
--- src/UIKit/Modules/Component.lua
-
 local Fragment = require(script.Parent.Fragment)
 
 local Component = {}
