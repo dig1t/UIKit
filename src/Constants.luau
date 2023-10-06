@@ -49,19 +49,19 @@ return {
 			PlaceholderColor3 = Color3.new(161, 161, 161); -- #a1a1a1
 			ClearTextOnFocus = false;
 			Font = Enum.Font.SourceSans;
-			Text = '';
+			Text = "";
 			TextSize = 16;
 		};
 		
 		TextButton = {
 			Font = Enum.Font.SourceSans;
-			Text = '';
+			Text = "";
 			TextSize = 16;
 		};
 		
 		TextLabel = {
 			Font = Enum.Font.SourceSans;
-			Text = '';
+			Text = "";
 			TextSize = 16;
 		};
 		

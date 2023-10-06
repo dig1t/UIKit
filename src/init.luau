@@ -1,4 +1,4 @@
-local UserInput = game:GetService("UserInputService")
+local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 
 local Util = require(script.dLib.Util)
@@ -55,7 +55,7 @@ function UK.setEnv(environment)
 end
 
 function UK.import(path)
-	assert(UK.sourceFolder, 'Source folder must be set with UK.src(location) before importing')
+	assert(UK.sourceFolder, "Source folder must be set with UK.src(location) before importing")
 	assert(typeof(path) == "string", "Path is not a string")
 	
 	local res = Util.treePath(UK.sourceFolder, path, "/")
@@ -98,7 +98,7 @@ function UK.loadModules(from)
 end
 
 function UK.setMouseIcon(icon)
-	if UserInput.MouseEnabled then
+	if UserInputService.MouseEnabled then
 		local mouse = player:GetMouse()
 		
 		if mouse then

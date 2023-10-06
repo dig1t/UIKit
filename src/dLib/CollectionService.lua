@@ -1,7 +1,7 @@
-local CollectionService = game:GetService('CollectionService')
+local CollectionService = game:GetService("CollectionService")
 
 local dLib = require(script.Parent)
-local Util = dLib.import('Util')
+local Util = dLib.import("Util")
 
 local lib, methods = {}, {}
 methods.__index = methods
@@ -26,7 +26,7 @@ function methods:destroy()
 end
 
 function lib.watch(tagId)
-	assert(tagId, 'CollectionService.watch - Missing tag id')
+	assert(tagId, "CollectionService.watch - Missing tag id")
 	
 	local self = setmetatable({}, methods)
 	

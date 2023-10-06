@@ -228,8 +228,8 @@ end
 -- Usage: image(number id)
 function methods:image(id)
 	if self.context and Const.isImageObject[self.context.ClassName] then
-		if id == '' then
-			self.context.Image = ''
+		if id == "" then
+			self.context.Image = ""
 		elseif id then
 			-- set
 			self.context.Image = typeof(id) == "number" and "rbxassetid://" .. id or id
