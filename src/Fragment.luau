@@ -7,9 +7,9 @@ end
 
 function methods:destroy()
 	for _, el in pairs(self.children) do
-		if typeof(el) == 'Instance' then
+		if typeof(el) == "Instance" then
 			el:Destroy()
-		elseif typeof(el) == 'table' and el.ui then
+		elseif typeof(el) == "table" and el.ui then
 			el:destroy()
 		end
 	end
@@ -19,7 +19,7 @@ Fragment.make = function(tbl)
 	local self = setmetatable({}, methods)
 	
 	self.ui = true
-	self.type = 'fragment'
+	self.type = "fragment"
 	self.children = tbl or {}
 	
 	return self

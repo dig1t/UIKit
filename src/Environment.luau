@@ -4,7 +4,7 @@ return function(tbl)
 	local self = red.State.new(tbl)
 	
 	self.ui = true
-	self.type = 'environment'
+	self.type = "environment"
 	
 	return self
 end

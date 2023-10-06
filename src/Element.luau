@@ -21,8 +21,8 @@ end
 -- Connects an event listener to the element and returns the connection
 -- Usage: connect(string connectionType, function fn)
 function methods:connect(connectionType, fn)
-	assert(connectionType, 'Missing connection type')
-	assert(typeof(fn) == 'function', 'Missing callback function')
+	assert(connectionType, "Missing connection type")
+	assert(typeof(fn) == "function", "Missing callback function")
 	
 	if not self.connections then
 		return
@@ -38,8 +38,8 @@ end
 -- Connects an event listener to the element and returns the connection
 -- Usage: connect(string connectionType, function fn)
 function methods:propertyChanged(property, fn)
-	assert(property, 'Missing property name')
-	assert(typeof(fn) == 'function', 'Missing callback function')
+	assert(property, "Missing property name")
+	assert(typeof(fn) == "function", "Missing callback function")
 	
 	if not self.connections then
 		return
@@ -53,7 +53,7 @@ function methods:propertyChanged(property, fn)
 end
 
 function methods:disconnect(connection)
-	if typeof(connection) == 'RBXScriptConnection' then
+	if typeof(connection) == "RBXScriptConnection" then
 		connection:Disconnect()
 		
 		for id, v in pairs(self.connections) do
@@ -62,7 +62,7 @@ function methods:disconnect(connection)
 				break
 			end
 		end
-	elseif typeof(connection) == 'string' and self.connections[connection] then
+	elseif typeof(connection) == "string" and self.connections[connection] then
 		self.connections[connection]:Disconnect()
 		self.connections[connection] = nil
 	end
@@ -71,23 +71,23 @@ end
 -- Inserts elements/components/fragments into the element
 -- Usage: appendChild(Fragment || Element || Component)
 function methods:appendChild(child)
-	if typeof(child) == 'Instance' then
+	if typeof(child) == "Instance" then
 		child.Parent = self.context
-	elseif typeof(child) == 'table' then
+	elseif typeof(child) == "table" then
 		if child.ui then
-			if child.type == 'component' and not child.children then
+			if child.type == "component" and not child.children then
 				-- Process component, then wrap child in a fragment so it renders
 				-- Otherwise it would render the child's children, which it
 				-- does not have
 				child = Fragment(Helper.processComponent(child, self, self.env))
 				Helper.renderLoop(self.context, child, self.env)
-			elseif child.type == 'element' then
+			elseif child.type == "element" then
 				child.context.Parent = self.context
 				Helper.renderLoop(child.context, child.children, self.env)
 			end
 		else
 			for _, v in pairs(child) do
-				if typeof(v) == 'Instance' then
+				if typeof(v) == "Instance" then
 					v.Parent = self.context
 				end
 			end
@@ -116,9 +116,9 @@ function methods:destroy()
 		self.children:destroy()
 	else
 		for _, el in pairs(self.children) do
-			if typeof(el) == 'table' and el.ui and el.destroy then
+			if typeof(el) == "table" and el.ui and el.destroy then
 				el:destroy()
-			elseif typeof(el) == 'Instance' then
+			elseif typeof(el) == "Instance" then
 				el:Destroy()
 			end
 		end
@@ -232,7 +232,7 @@ function methods:image(id)
 			self.context.Image = ''
 		elseif id then
 			-- set
-			self.context.Image = typeof(id) == 'number' and 'rbxassetid://' .. id or id
+			self.context.Image = typeof(id) == "number" and "rbxassetid://" .. id or id
 		else
 			return self.context.Image
 		end
@@ -291,13 +291,13 @@ function methods:color(value, flag)
 end
 
 -- Merges multiple props into one table
--- Usage: mergeProps(style.box, { Name = 'Container' }, ...)
+-- Usage: mergeProps(style.box, { Name = "Container" }, ...)
 function Element.mergeProps(...)
 	local res = {}
 	local list = {...}
 	
 	for i = #list, 1, -1 do
-		if typeof(list[i]) == 'table' then
+		if typeof(list[i]) == "table" then
 			Util.extend(res, list[i])
 		end
 	end
@@ -310,20 +310,20 @@ setmetatable(Element, {
 		local self = setmetatable({}, methods)
 		
 		self.ui = true
-		self.type = 'element'
+		self.type = "element"
 		self.connections = {}
 		
 		if not config then
 			config = {}
 		end
 		
-		if typeof(el) == 'string' then
+		if typeof(el) == "string" then
 			local connections = config.connections
 			config.connections = nil
 			
 			self.context = Helper.instance(el)(config)
-			self.children = typeof(children) == 'table' and Fragment.make(
-				children.type == 'element' and { children } or children
+			self.children = typeof(children) == "table" and Fragment.make(
+				children.type == "element" and { children } or children
 			) or Fragment.make()
 			
 			if connections then
@@ -332,7 +332,7 @@ setmetatable(Element, {
 				end
 			end
 			
-			if Const.isTextObject[el] and typeof(children) == 'string' then
+			if Const.isTextObject[el] and typeof(children) == "string" then
 				self.context.Text = children
 			end
 		end

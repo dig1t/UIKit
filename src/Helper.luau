@@ -16,7 +16,7 @@ function Helper.instance(className, ...)
 	end
 	
 	for i = 1, #extraProps do
-		if typeof(extraProps[i]) == 'table' then
+		if typeof(extraProps[i]) == "table" then
 			for name, value in pairs(extraProps[i]) do
 				props[name] = value
 			end
@@ -30,15 +30,15 @@ function Helper.instance(className, ...)
 			Util.extend(props, data)
 			
 			for k, v in pairs(props) do
-				if type(k) == 'number' then
+				if type(k) == "number" then
 					-- Check if child is an uncalled Helper.instance() variable
-					if type(v) == 'function' then
+					if type(v) == "function" then
 						v = v() -- Call to convert into a roblox instance
 					end
 					
 					-- Set the parent
 					v.Parent = obj
-				elseif k ~= 'Parent' then -- Always set parent last
+				elseif k ~= "Parent" then -- Always set parent last
 					obj[k] = v
 				end
 			end
@@ -70,7 +70,7 @@ function Helper.processComponent(el, child, env)
 	el = el.context
 	el.env = el.env or env -- Pass environment into rendered element
 	
-	if not el.children and el.type == 'component' then
+	if not el.children and el.type == "component" then
 		el = Helper.processComponent(el, child, env) -- Keep processing down the tree until it returns children or nil
 	end
 	
@@ -82,7 +82,7 @@ function Helper.processComponent2(el, child, env)
 	el = el:render() -- Children Fragment of above element
 	el.env = el.env or env -- Pass environment into rendered element
 	
-	if not el.children and el.type == 'component' then
+	if not el.children and el.type == "component" then
 		el = Helper.processComponent(el, child, env) -- Keep processing down the tree until it returns children or nil
 	end
 	
@@ -90,24 +90,24 @@ function Helper.processComponent2(el, child, env)
 end
 
 function Helper.renderLoop(parent, child, env)
-	if child.type == 'component' and not child.children then
+	if child.type == "component" and not child.children then
 		child.children = child:render()
 		Helper.renderLoop(parent, Helper.processComponent(child), env)
 	end
 	
 	for i, el in ipairs(child.children) do
 		-- If not a fragment/component then convert to a fragment/component
-		if typeof(el) == 'function' then -- Component function
+		if typeof(el) == "function" then -- Component function
 			el = el() -- Get returned component
-		elseif el.type == 'component' and not el.context then
+		elseif el.type == "component" and not el.context then
 			el = Helper.processComponent(el, child, env)
 		end
 		
-		if el.type == 'component' and not el.context then
+		if el.type == "component" and not el.context then
 			-- Loop through components until there is context
 			Helper.renderLoop(parent, el, env)
-		elseif (el.type == 'component' and el.context) or el.type == 'element' then
-			if el.type == 'component' then
+		elseif (el.type == "component" and el.context) or el.type == "element" then
+			if el.type == "component" then
 				el.env = el.env or env
 			end
 			
@@ -116,8 +116,8 @@ function Helper.renderLoop(parent, child, env)
 			if el.children then
 				Helper.renderLoop(el.context, el.children, env)
 			end
-		elseif el.type == 'fragment' then
-			if child.type == 'fragment' then
+		elseif el.type == "fragment" then
+			if child.type == "fragment" then
 				Helper.renderLoop(parent, el, env)
 			else
 				Helper.renderLoop(el, el.children, env)

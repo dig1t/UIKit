@@ -1,11 +1,12 @@
-local UserInput = game:GetService('UserInputService')
-local Players = game:GetService('Players')
+local UserInput = game:GetService("UserInputService")
+local Players = game:GetService("Players")
 
 local Util = require(script.dLib.Util)
 local Component = require(script.Component)
 local Fragment = require(script.Fragment)
 local Element = require(script.Element)
 local Helper = require(script.Helper)
+local Environment = require(script.Environment)
 local PropTypes = require(script.PropTypes)
 
 local UK, methods = {}, {}
@@ -14,9 +15,9 @@ methods.__index = methods
 UK.robloxNavbarHeight = 35
 
 UK.type = {
-	billboard = 'BillboardGui',
-	screen = 'ScreenGui',
-	surface = 'SurfaceGui'
+	billboard = "BillboardGui",
+	screen = "ScreenGui",
+	surface = "SurfaceGui"
 }
 
 UK.PropTypes = PropTypes
@@ -24,16 +25,17 @@ UK.Component = Component
 UK.Fragment = Fragment
 UK.Element = Element
 UK.Helper = Helper
+UK.Environment = Environment
 UK.createElement = Element
 
 local player = Players.LocalPlayer
 
 -- Usage: local UK = require(Bootstrap.UIKit).src(Bootstrap.src)
 function UK.src(location)
-	assert(location, 'UK.src - Source folder missing')
+	assert(location, "UK.src - Source folder missing")
 	assert(
-		typeof(location) == 'Instance' and location:IsA('Folder'),
-		'UK.src - Source must be a Folder instance'
+		typeof(location) == "Instance" and location:IsA("Folder"),
+		"UK.src - Source must be a Folder instance"
 	)
 	
 	UK.sourceFolder = location
@@ -43,8 +45,8 @@ end
 
 function UK.setEnv(environment)
 	assert(
-		typeof(environment) == 'table' and environment.type == 'environment',
-		'UK.setEnv - Missing environment states'
+		typeof(environment) == "table" and environment.type == "environment",
+		"UK.setEnv - Missing environment states"
 	)
 	
 	UK.env = environment
@@ -54,11 +56,11 @@ end
 
 function UK.import(path)
 	assert(UK.sourceFolder, 'Source folder must be set with UK.src(location) before importing')
-	assert(typeof(path) == 'string', 'Path is not a string')
+	assert(typeof(path) == "string", "Path is not a string")
 	
-	local res = Util.treePath(UK.sourceFolder, path, '/')
+	local res = Util.treePath(UK.sourceFolder, path, "/")
 	
-	if res and res:IsA('ModuleScript') then
+	if res and res:IsA("ModuleScript") then
 		local success, err = pcall(function()
 			res = require(res)
 		end)
@@ -75,13 +77,13 @@ function UK.loadModules(from)
 	local res = {}
 	
 	for _, moduleScript in pairs(from) do
-		if moduleScript:IsA('ModuleScript') then
+		if moduleScript:IsA("ModuleScript") then
 			local module = moduleScript.Name
 			
 			--local success, err = pcall(function()
 				res[module] = require(moduleScript)
 				
-				if typeof(res[module]) == 'function' then
+				if typeof(res[module]) == "function" then
 					res[module] = res[module](UK.env) -- Inject the environment
 				end
 			--[[end)
@@ -107,14 +109,14 @@ end
 
 -- This shortcut works best when defining constants or in a one time component render
 function UK.getAsset(name, scale, assetType)
-	assert(name, 'UK.getAsset - Missing asset name')
+	assert(name, "UK.getAsset - Missing asset name")
 	
-	local localAsset = typeof(name) == 'string'
+	local localAsset = typeof(name) == "string"
 	
 	return string.format(
-		'rbx%s://%s',
-		localAsset and 'gameasset' or 'assetid', -- Is asset local to the game or available on roblox?
-		localAsset and ((assetType or 'Images') .. '/' .. name .. (scale or '@1x')) or name -- asset location
+		"rbx%s://%s",
+		localAsset and "gameasset" or "assetid", -- Is asset local to the game or available on roblox?
+		localAsset and ((assetType or "Images") .. "/" .. name .. (scale or "@1x")) or name -- asset location
 	)
 end
 
@@ -133,14 +135,14 @@ end
 -- @return root table
 function UK.render(...) -- screenType (optional), name, child, parent
 	local args = {...}
-	local screenType = 'ScreenGui'
+	local screenType = "ScreenGui"
 	
 	if #args == 4 then
 		screenType = args[1]
 		Util.tableRemove(args, 1)
 	end
 	
-	assert(args[2].ui, 'Not a valid component')
+	assert(args[2].ui, "Not a valid component")
 	
 	local name, child, parent = args[1], args[2], args[3]
 	
@@ -148,13 +150,13 @@ function UK.render(...) -- screenType (optional), name, child, parent
 	local self = setmetatable({}, methods)
 	
 	self.ui = true
-	self.type = 'root'
+	self.type = "root"
 	
 	self.context = Instance.new(screenType, parent)
 	self.context.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	self.context.Name = name
 	
-	if screenType == 'SurfaceGui' then
+	if screenType == "SurfaceGui" then
 		self.context.Adornee = parent
 		self.context.ClipsDescendants = true
 	end
@@ -162,16 +164,16 @@ function UK.render(...) -- screenType (optional), name, child, parent
 	
 	child.env = UK.env -- Environment variable to pass down the render tree
 	
-	if child.type == 'component' then
+	if child.type == "component" then
 		child = Fragment(child) -- Wrap the initialized component inside a fragment
 		--[[child:init() -- Initialize component before rendering it
 		child = child:render() -- returns the Fragment of the initial child
 		child.env = UK.env -- Inject the environment table/state]]
 	end
 	
-	if child.type == 'element' then
+	if child.type == "element" then
 		child.context.Parent = self.context
-	elseif child.type == 'fragment' then
+	elseif child.type == "fragment" then
 		Helper.renderLoop(self.context, child, UK.env)
 	end
 	

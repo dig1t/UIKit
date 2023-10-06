@@ -11,7 +11,7 @@ Component.propTypes = {
 
 -- optionName prop passes validation
 MyComponent({
-	pet = 'name'
+	pet = "name"
 })
 
 -- optionName prop fails validation, resulting in a thrown error
@@ -30,7 +30,7 @@ Component.propTypes = {
 
 -- optionName prop passes validation
 MyComponent({
-	pet = 'name'
+	pet = "name"
 })
 
 -- optionName prop passes validation
@@ -40,11 +40,11 @@ MyComponent({
 ]]
 
 local propTypes = {
-	['string'] = 'string',
-	['table'] = 'table',
-	['number'] = 'number',
-	['bool'] = 'boolean',
-	['func'] = 'function'
+	["string"] = "string",
+	["table"] = "table",
+	["number"] = "number",
+	["bool"] = "boolean",
+	["func"] = "function"
 }
 
 return setmetatable({}, {
