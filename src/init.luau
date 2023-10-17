@@ -1,8 +1,8 @@
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 
-local import = require(script.Parent.dLib).import
-local Util = import("Util")
+local dLib = require(script.Parent.dLib)
+local Util = dLib.import("Util")
 local Component = require(script.Component)
 local Fragment = require(script.Fragment)
 local Element = require(script.Element)
