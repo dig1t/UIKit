@@ -1,4 +1,5 @@
-local Util = require(script.Parent.dLib.Util)
+local import = require(script.Parent.Parent.dLib).import
+local Util = import("Util")
 local Fragment = require(script.Parent.Fragment)
 local Const = require(script.Parent.Constants)
 local Helper = require(script.Parent.Helper)
