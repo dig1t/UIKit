@@ -1,10 +1,6 @@
 {
 	"name": "uikit",
 	"tree": {
-		"$path": "src/Packages",
-
-		"uikit": {
-			"$path": "src"
-		}
+	  "$path": "src"
 	}
-}
+  }

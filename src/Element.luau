@@ -1,5 +1,5 @@
 local dLib = require(script.Parent.Parent.dLib)
-local Util = dLib.import("Util")
+local Util = dLib.import("dLib/Util")
 local Fragment = require(script.Parent.Fragment)
 local Const = require(script.Parent.Constants)
 local Helper = require(script.Parent.Helper)
