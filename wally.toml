@@ -1,6 +1,6 @@
 [package]
 name = "dig1t/uikit"
-version = "1.0.10"
+version = "1.0.11"
 license = "Apache-2.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
@@ -9,5 +9,5 @@ include = ["src", "src/**", "wally.toml", "default.project.json"]
 exclude = ["**"]
 
 [dependencies]
-dLib = "dig1t/dlib@1.1.10"
+dLib = "dig1t/dlib@1.1.17"
 red = "dig1t/red@1.2.8"
